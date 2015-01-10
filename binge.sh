@@ -8,6 +8,7 @@ if [ "$1" == "-h" ]; then
 	exit
 elif [ "$1" == "-s" ]; then
 	echo $2 > ~/.current_binge
+	cd $2
 fi
 
 if [ "$1" == "-d" ] && [ -e ~/.current_binge ]; then
