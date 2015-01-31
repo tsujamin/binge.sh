@@ -66,15 +66,18 @@ for ep_count in $(seq 1 $(ls | wc -l)); do
 					echo -n "current time? "
 					read ep_time
 					echo $ep_time > .last_timestamp
-					break 3
+					exit 0
 				fi
 			done
 		else
 			if [ $op = "+" ]; then
 				continue 2
 			elif [ $op = "n" ]; then
-				break 2
+				exit 0
 			fi
 		fi
 	done
 done
+
+echo "finished"
+rm .current_episode
