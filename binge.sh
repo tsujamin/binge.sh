@@ -7,12 +7,12 @@ if [ "$1" == "-h" ]; then
 	echo "binge [-d] [-s directory]"
 	exit
 elif [ "$1" == "-s" ]; then
-	echo $2 > ~/.current_binge
-	cd $2
+	echo "$2" > ~/.current_binge
+	cd "$2"
 fi
 
 if [ "$1" == "-d" ] && [ -e ~/.current_binge ]; then
-	cd $(cat ~/.current_binge)
+	cd "$(cat ~/.current_binge)"
 fi
 
 if [ -e .current_episode ]; then
@@ -36,7 +36,7 @@ if [ -e .last_timestamp ]; then
 fi
 
 for ep_count in $(seq 1 $(ls | wc -l)); do
-	ep=`ls | head -n $ep_count | tail -n 1`
+	ep=`ls | sort -n | head -n $ep_count | tail -n 1`
 
 	if ! $found_episode; then
 		current_episode=`cat .current_episode`
